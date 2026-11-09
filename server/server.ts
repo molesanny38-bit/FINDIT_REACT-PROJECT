@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import db from "./config/db";
 import authRoutes from "./routes/authRoutes";
+import itemsRoutes from "./routes/itemsRoutes";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+app.use("/api/items", itemsRoutes);
 
 // Home route
 app.get("/", (req, res) => {
