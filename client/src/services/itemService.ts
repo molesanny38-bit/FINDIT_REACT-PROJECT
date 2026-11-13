@@ -16,6 +16,7 @@ export interface Item {
   item_id: number;
   item_name: string;
   description: string | null;
+  identifying_details?: string | null;
   color: string | null;
   brand: string | null;
   item_type: "lost" | "found";
@@ -27,6 +28,7 @@ export interface Item {
   last_name: string | null;
   category_id: number;
   location_id: number;
+  image_path?: string | null;
 }
 
 export interface AddItemData {
@@ -39,26 +41,8 @@ export interface AddItemData {
   brand: string;
   item_type: "lost" | "found";
   date_lost_found: string;
+  image?: File | null;
 }
-
-export const getItems = async (): Promise<Item[]> => {
-  const response = await axios.get(
-    `${API_URL}/items`,
-    getAuthConfig()
-  );
-
-  return response.data;
-};
-
-export const addItem = async (itemData: AddItemData) => {
-  const response = await axios.post(
-    `${API_URL}/items`,
-    itemData,
-    getAuthConfig()
-  );
-
-  return response.data;
-};
 
 export interface Category {
   category_id: number;
@@ -70,6 +54,49 @@ export interface Location {
   location_name: string;
 }
 
+// Convert item data into FormData
+const createItemFormData = (itemData: AddItemData) => {
+  const formData = new FormData();
+
+  formData.append("category_id", String(itemData.category_id));
+  formData.append("location_id", String(itemData.location_id));
+  formData.append("item_name", itemData.item_name);
+  formData.append("description", itemData.description);
+  formData.append("identifying_details", itemData.identifying_details);
+  formData.append("color", itemData.color);
+  formData.append("brand", itemData.brand);
+  formData.append("item_type", itemData.item_type);
+  formData.append("date_lost_found", itemData.date_lost_found);
+
+  if (itemData.image) {
+    formData.append("image", itemData.image);
+  }
+
+  return formData;
+};
+
+// GET ITEMS
+export const getItems = async (): Promise<Item[]> => {
+  const response = await axios.get(
+    `${API_URL}/items`,
+    getAuthConfig()
+  );
+
+  return response.data;
+};
+
+// ADD ITEM
+export const addItem = async (itemData: AddItemData) => {
+  const response = await axios.post(
+    `${API_URL}/items`,
+    createItemFormData(itemData),
+    getAuthConfig()
+  );
+
+  return response.data;
+};
+
+// GET CATEGORIES
 export const getCategories = async (): Promise<Category[]> => {
   const response = await axios.get(
     `${API_URL}/items/categories`,
@@ -79,6 +106,7 @@ export const getCategories = async (): Promise<Category[]> => {
   return response.data;
 };
 
+// GET LOCATIONS
 export const getLocations = async (): Promise<Location[]> => {
   const response = await axios.get(
     `${API_URL}/items/locations`,
@@ -95,7 +123,7 @@ export const updateItem = async (
 ) => {
   const response = await axios.put(
     `${API_URL}/items/${id}`,
-    itemData,
+    createItemFormData(itemData),
     getAuthConfig()
   );
 

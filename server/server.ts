@@ -4,6 +4,12 @@ import dotenv from "dotenv";
 import db from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import itemsRoutes from "./routes/itemsRoutes";
+import claimsRoutes from "./routes/claimsRoutes";
+import notificationsRoutes from "./routes/notificationsRoutes";
+import dashboardRoutes from "./routes/dashboardRoutes";
+import usersRoutes from "./routes/userRoutes";
+import path from "path";
+import matchesRoutes from "./routes/matchesRoutes";
 
 dotenv.config();
 
@@ -17,6 +23,12 @@ const PORT = process.env.PORT || 5000;
 // Authentication routes
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemsRoutes);
+app.use("/api/claims", claimsRoutes);
+app.use("/api/notifications", notificationsRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use("/api/matches", matchesRoutes);
 
 // Home route
 app.get("/", (req, res) => {
