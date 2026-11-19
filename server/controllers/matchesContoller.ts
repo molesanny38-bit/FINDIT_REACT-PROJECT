@@ -3,16 +3,13 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../config/db";
 
 interface AuthRequest extends Request {
-  user?: {
-    user_id: number;
-    role: string;
-  };
+    user?: {
+        user_id: number;
+        role: "admin" | "staff" | "student";
+    };
 }
 
-// =====================================================
-// GET ALL MATCHES
-// =====================================================
-
+//GET ALL MATCHES
 export const getMatches = async (
   req: AuthRequest,
   res: Response
@@ -129,10 +126,10 @@ export const getMatches = async (
   }
 };
 
-// =====================================================
+
 // UPDATE MATCH STATUS
 // CONFIRM OR DISMISS A MATCH
-// =====================================================
+
 
 export const updateMatchStatus = async (
   req: AuthRequest,

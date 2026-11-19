@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import "./Claims.css";
 import {
   getClaims,
   reviewClaim,
@@ -8,6 +8,7 @@ import {
   type Claim,
   type ItemReturn,
 } from "../services/claimeService";
+
 
 function Claims() {
   const [claims, setClaims] = useState<Claim[]>([]);
@@ -42,9 +43,9 @@ function Claims() {
     currentUser.role === "staff" ||
     currentUser.role === "admin";
 
-  // ==========================================
+  
   // LOAD CLAIMS AND RETURN HISTORY
-  // ==========================================
+  
   const loadClaims = async () => {
     try {
       setLoading(true);
@@ -69,18 +70,18 @@ function Claims() {
     loadClaims();
   }, []);
 
-  // ==========================================
+  
   // FORMAT DATE
-  // ==========================================
+  
   const formatDate = (date: string | null) => {
     if (!date) return "N/A";
 
     return new Date(date).toLocaleDateString();
   };
 
-  // ==========================================
+ 
   // REVIEW CLAIM
-  // ==========================================
+  
   const handleReview = async (
     id: number,
     status: "approved" | "rejected"
@@ -108,9 +109,9 @@ function Claims() {
     }
   };
 
-  // ==========================================
+  
   // OPEN RETURN MODAL
-  // ==========================================
+ 
   const openReturnModal = (claim: Claim) => {
     setSelectedClaim(claim);
 
@@ -124,9 +125,9 @@ function Claims() {
     setShowReturnModal(true);
   };
 
-  // ==========================================
+  
   // CLOSE RETURN MODAL
-  // ==========================================
+ 
   const closeReturnModal = () => {
     if (processingReturn) return;
 
@@ -136,9 +137,9 @@ function Claims() {
     setReturnNotes("");
   };
 
-  // ==========================================
+ 
   // PROCESS ITEM RETURN
-  // ==========================================
+
   const handleReturn = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -190,9 +191,9 @@ function Claims() {
     }
   };
 
-  // ==========================================
+
   // FILTER CLAIMS
-  // ==========================================
+  
   const filteredClaims = claims.filter((claim) => {
     const search = searchTerm.toLowerCase().trim();
 
@@ -212,9 +213,9 @@ function Claims() {
     return matchesSearch && matchesStatus;
   });
 
-  // ==========================================
+ 
   // PAGINATION
-  // ==========================================
+  
   const totalPages = Math.ceil(
     filteredClaims.length / itemsPerPage
   );
@@ -226,9 +227,9 @@ function Claims() {
     startIndex + itemsPerPage
   );
 
-  // ==========================================
+  
   // SUMMARY COUNTS
-  // ==========================================
+ 
   const pendingCount = claims.filter(
     (claim) => claim.claim_status === "pending"
   ).length;
@@ -241,9 +242,9 @@ function Claims() {
     (claim) => claim.claim_status === "rejected"
   ).length;
 
-  // ==========================================
+  
   // USER INTERFACE
-  // ==========================================
+ 
   return (
     <div className="claims-page">
 
@@ -328,6 +329,7 @@ function Claims() {
               setCurrentPage(1);
             }}
             className="claims-search"
+            aria-label="Search claims by item, claimant, description, or ID"
           />
 
           <select
@@ -337,6 +339,7 @@ function Claims() {
               setCurrentPage(1);
             }}
             className="claims-filter"
+            aria-label="Filter claims by status"
           >
             <option value="all">All Statuses</option>
             <option value="pending">Pending</option>
@@ -598,11 +601,17 @@ function Claims() {
       {/* RETURN MODAL */}
       {showReturnModal && selectedClaim && (
 
-        <div className="return-modal-overlay">
+        <div className="return-modal-overlay" onClick={closeReturnModal}>
 
-          <div className="return-modal">
+          <div
+            className="return-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="return-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
 
-            <h2>Record Item Return</h2>
+            <h2 id="return-modal-title">Record Item Return</h2>
 
             <p>
               Item: <strong>{selectedClaim.item_name}</strong>

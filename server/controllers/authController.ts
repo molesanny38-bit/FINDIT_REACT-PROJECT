@@ -2,8 +2,12 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import db from "../config/db";
+import { logActivity } from "../utils/activitylogger";
+
 
 // STUDENT REGISTRATION
+
+
 export const register = async (req: Request, res: Response) => {
     try {
         const {
@@ -61,10 +65,18 @@ export const register = async (req: Request, res: Response) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Always register as student
-        await db.execute(
+        const [result]: any = await db.execute(
             `INSERT INTO users
-            (first_name, middle_name, last_name, email,
-             password, student_staff_id, role, status)
+            (
+                first_name,
+                middle_name,
+                last_name,
+                email,
+                password,
+                student_staff_id,
+                role,
+                status
+            )
             VALUES (?, ?, ?, ?, ?, ?, 'student', 'active')`,
             [
                 first_name,
@@ -75,6 +87,13 @@ export const register = async (req: Request, res: Response) => {
                 student_staff_id || null
             ]
         );
+
+        // Record registration activity
+        await logActivity({
+            user_id: result.insertId,
+            action: "User Registration",
+            details: `New student account registered: ${first_name} ${last_name}`
+        });
 
         return res.status(201).json({
             success: true,
@@ -91,7 +110,10 @@ export const register = async (req: Request, res: Response) => {
     }
 };
 
+
 // USER LOGIN
+
+
 export const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
@@ -104,10 +126,17 @@ export const login = async (req: Request, res: Response) => {
         }
 
         const [rows] = await db.execute(
-            `SELECT user_id, first_name, middle_name, last_name,
-                    email, password, role, status
-             FROM users
-             WHERE email = ?`,
+            `SELECT
+                user_id,
+                first_name,
+                middle_name,
+                last_name,
+                email,
+                password,
+                role,
+                status
+            FROM users
+            WHERE email = ?`,
             [email]
         );
 
@@ -129,6 +158,7 @@ export const login = async (req: Request, res: Response) => {
             });
         }
 
+        // Verify password
         const passwordMatch = await bcrypt.compare(
             password,
             user.password
@@ -147,6 +177,7 @@ export const login = async (req: Request, res: Response) => {
             throw new Error("JWT_SECRET is not configured.");
         }
 
+        // Generate JWT token
         const token = jwt.sign(
             {
                 user_id: user.user_id,
@@ -155,6 +186,13 @@ export const login = async (req: Request, res: Response) => {
             secret,
             { expiresIn: "1d" }
         );
+
+        // Record successful login
+        await logActivity({
+            user_id: user.user_id,
+            action: "User Login",
+            details: `${user.first_name} ${user.last_name} logged into the system.`
+        });
 
         return res.status(200).json({
             success: true,

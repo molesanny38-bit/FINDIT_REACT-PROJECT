@@ -1,0 +1,491 @@
+
+:root {
+  color-scheme: light;
+
+  /* App Backgrounds */
+  --app-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --card-bg-elevated: #ffffff;
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #f8fafc;
+  --sidebar-active-bg: #2563eb;
+  --topbar-bg: #ffffff;
+
+  /* Typography Colors */
+  --app-text: #0f172a;
+  --app-text-strong: #020617;
+  --app-muted: #475569;
+  --app-subtle: #64748b;
+
+  /* Borders & Dividers */
+  --border-color: #cbd5e1;
+  --border-light: #e2e8f0;
+  --border-strong: #94a3b8;
+
+  /* Accent & Action Colors */
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-active: #1e40af;
+  --accent-light: #eff6ff;
+  --accent-text: #ffffff;
+
+  /* Status Colors */
+  --success-color: #15803d;
+  --success-bg: #dcfce7;
+  --success-border: #86efac;
+
+  --warning-color: #b45309;
+  --warning-bg: #fef3c7;
+  --warning-border: #fcd34d;
+
+  --danger-color: #b91c1c;
+  --danger-bg: #fee2e2;
+  --danger-border: #fca5a5;
+
+  --info-color: #0369a1;
+  --info-bg: #e0f2fe;
+  --info-border: #7dd3fc;
+
+  /* Shadows & Radius */
+  --card-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --card-shadow-hover: 0 10px 24px rgba(15, 23, 42, 0.1);
+  --modal-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Focus & Accessibility */
+  --focus-ring: #2563eb;
+  --focus-ring-offset: 3px;
+  --focus-outline-width: 3px;
+
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --app-bg: #0b1120;
+  --card-bg: #1e293b;
+  --card-bg-elevated: #26354a;
+  --sidebar-bg: #070d19;
+  --sidebar-text: #f1f5f9;
+  --sidebar-active-bg: #3b82f6;
+  --topbar-bg: #131d31;
+
+  --app-text: #f8fafc;
+  --app-text-strong: #ffffff;
+  --app-muted: #cbd5e1;
+  --app-subtle: #94a3b8;
+
+  --border-color: #334155;
+  --border-light: #1e293b;
+  --border-strong: #475569;
+
+  --accent-color: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-active: #93c5fd;
+  --accent-light: #1e3a8a33;
+  --accent-text: #ffffff;
+
+  --success-color: #4ade80;
+  --success-bg: #064e3b4d;
+  --success-border: #059669;
+
+  --warning-color: #fde047;
+  --warning-bg: #78350f4d;
+  --warning-border: #d97706;
+
+  --danger-color: #f87171;
+  --danger-bg: #7f1d1d4d;
+  --danger-border: #dc2626;
+
+  --info-color: #38bdf8;
+  --info-bg: #0c4a6e4d;
+  --info-border: #0284c7;
+
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --card-shadow-hover: 0 10px 28px rgba(0, 0, 0, 0.6);
+  --modal-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+
+  --focus-ring: #60a5fa;
+}
+
+/* 
+   PWD ACCESSIBILITY: HIGH CONTRAST LIGHT MODE (WCAG AAA)
+*/
+:root[data-contrast="high"]:not([data-theme="dark"]) {
+  color-scheme: light;
+
+  --app-bg: #ffffff !important;
+  --card-bg: #ffffff !important;
+  --card-bg-elevated: #ffffff !important;
+  --sidebar-bg: #000000 !important;
+  --sidebar-text: #ffffff !important;
+  --sidebar-active-bg: #0033cc !important;
+  --topbar-bg: #ffffff !important;
+
+  --app-text: #000000 !important;
+  --app-text-strong: #000000 !important;
+  --app-muted: #111111 !important;
+  --app-subtle: #222222 !important;
+
+  --border-color: #000000 !important;
+  --border-light: #000000 !important;
+  --border-strong: #000000 !important;
+
+  --accent-color: #0022bb !important;
+  --accent-hover: #001188 !important;
+  --accent-active: #000066 !important;
+  --accent-light: #e6edff !important;
+  --accent-text: #ffffff !important;
+
+  --success-color: #005500 !important;
+  --success-bg: #e6ffe6 !important;
+  --success-border: #005500 !important;
+
+  --warning-color: #773300 !important;
+  --warning-bg: #fff5e6 !important;
+  --warning-border: #773300 !important;
+
+  --danger-color: #990000 !important;
+  --danger-bg: #ffe6e6 !important;
+  --danger-border: #990000 !important;
+
+  --info-color: #003377 !important;
+  --info-bg: #e6f0ff !important;
+  --info-border: #003377 !important;
+
+  --card-shadow: none !important;
+  --card-shadow-hover: none !important;
+
+  --focus-ring: #000000 !important;
+  --focus-outline-width: 4px !important;
+}
+
+:root[data-contrast="high"]:not([data-theme="dark"]) .card,
+:root[data-contrast="high"]:not([data-theme="dark"]) .claim-card,
+:root[data-contrast="high"]:not([data-theme="dark"]) .notification-card,
+:root[data-contrast="high"]:not([data-theme="dark"]) .match-card,
+:root[data-contrast="high"]:not([data-theme="dark"]) .browse-item-card,
+:root[data-contrast="high"]:not([data-theme="dark"]) .report-card,
+:root[data-contrast="high"]:not([data-theme="dark"]) input,
+:root[data-contrast="high"]:not([data-theme="dark"]) select,
+:root[data-contrast="high"]:not([data-theme="dark"]) textarea,
+:root[data-contrast="high"]:not([data-theme="dark"]) button,
+:root[data-contrast="high"]:not([data-theme="dark"]) table,
+:root[data-contrast="high"]:not([data-theme="dark"]) th,
+:root[data-contrast="high"]:not([data-theme="dark"]) td {
+  border-width: 2px !important;
+  border-color: #000000 !important;
+}
+
+/*
+   PWD ACCESSIBILITY: HIGH CONTRAST DARK MODE (WCAG AAA)
+*/
+:root[data-contrast="high"][data-theme="dark"] {
+  color-scheme: dark;
+
+  --app-bg: #000000 !important;
+  --card-bg: #000000 !important;
+  --card-bg-elevated: #0a0a0a !important;
+  --sidebar-bg: #000000 !important;
+  --sidebar-text: #ffffff !important;
+  --sidebar-active-bg: #ffff00 !important;
+  --topbar-bg: #000000 !important;
+
+  --app-text: #ffffff !important;
+  --app-text-strong: #ffffff !important;
+  --app-muted: #f0f0f0 !important;
+  --app-subtle: #e0e0e0 !important;
+
+  --border-color: #ffffff !important;
+  --border-light: #ffffff !important;
+  --border-strong: #ffffff !important;
+
+  --accent-color: #ffff00 !important;
+  --accent-hover: #ffee33 !important;
+  --accent-active: #ffff66 !important;
+  --accent-light: #222200 !important;
+  --accent-text: #000000 !important;
+
+  --success-color: #00ff66 !important;
+  --success-bg: #00220a !important;
+  --success-border: #00ff66 !important;
+
+  --warning-color: #ffaa00 !important;
+  --warning-bg: #2b1800 !important;
+  --warning-border: #ffaa00 !important;
+
+  --danger-color: #ff4444 !important;
+  --danger-bg: #330000 !important;
+  --danger-border: #ff4444 !important;
+
+  --info-color: #33ddff !important;
+  --info-bg: #001f2b !important;
+  --info-border: #33ddff !important;
+
+  --card-shadow: none !important;
+  --card-shadow-hover: none !important;
+
+  --focus-ring: #ffff00 !important;
+  --focus-outline-width: 4px !important;
+}
+
+:root[data-contrast="high"][data-theme="dark"] .card,
+:root[data-contrast="high"][data-theme="dark"] .claim-card,
+:root[data-contrast="high"][data-theme="dark"] .notification-card,
+:root[data-contrast="high"][data-theme="dark"] .match-card,
+:root[data-contrast="high"][data-theme="dark"] .browse-item-card,
+:root[data-contrast="high"][data-theme="dark"] .report-card,
+:root[data-contrast="high"][data-theme="dark"] input,
+:root[data-contrast="high"][data-theme="dark"] select,
+:root[data-contrast="high"][data-theme="dark"] textarea,
+:root[data-contrast="high"][data-theme="dark"] button,
+:root[data-contrast="high"][data-theme="dark"] table,
+:root[data-contrast="high"][data-theme="dark"] th,
+:root[data-contrast="high"][data-theme="dark"] td {
+  border-width: 2px !important;
+  border-color: #ffffff !important;
+}
+
+/* 
+   PWD ACCESSIBILITY: FONT SIZING SCALING
+*/
+html {
+  font-size: 16px;
+}
+
+html[data-font-size="medium"] {
+  font-size: 18px !important;
+}
+
+html[data-font-size="large"] {
+  font-size: 20px !important;
+}
+
+html[data-font-size="xlarge"] {
+  font-size: 22px !important;
+}
+
+/*
+   PWD ACCESSIBILITY: DYSLEXIA-FRIENDLY TYPOGRAPHY
+*/
+html[data-dyslexia="true"],
+html[data-dyslexia="true"] body,
+html[data-dyslexia="true"] button,
+html[data-dyslexia="true"] input,
+html[data-dyslexia="true"] select,
+html[data-dyslexia="true"] textarea,
+html[data-dyslexia="true"] p,
+html[data-dyslexia="true"] span,
+html[data-dyslexia="true"] h1,
+html[data-dyslexia="true"] h2,
+html[data-dyslexia="true"] h3,
+html[data-dyslexia="true"] h4,
+html[data-dyslexia="true"] a {
+  font-family: "OpenDyslexic", "Lexend", "Comic Sans MS", "Trebuchet MS", "Arial Rounded MT Bold", sans-serif !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.12em !important;
+  line-height: 1.8 !important;
+}
+
+/* 
+   PWD ACCESSIBILITY: UNDERLINE ALL LINKS
+*/
+html[data-underline-links="true"] a,
+html[data-underline-links="true"] nav a,
+html[data-underline-links="true"] .sidebar a,
+html[data-underline-links="true"] button.link-style,
+html[data-underline-links="true"] .back-button {
+  text-decoration: underline !important;
+  text-underline-offset: 4px !important;
+  text-decoration-thickness: 2px !important;
+}
+
+
+/* 
+   PWD ACCESSIBILITY: REDUCED MOTION (Vestibular Safety)
+*/
+
+/* Apply reduced motion when manually enabled */
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* Respect the user's system reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* 
+   PWD ACCESSIBILITY: FOCUS GUIDE (Visible Keyboard / Motor Highlighting)
+*/
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-ring) !important;
+  outline-offset: var(--focus-ring-offset) !important;
+  box-shadow: 0 0 0 4px var(--accent-light) !important;
+}
+
+html[data-focus-guide="true"] :focus-visible {
+  outline: 4px solid var(--accent-color) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.35) !important;
+}
+
+/*
+   GLOBAL ACCESSIBILITY & RESET STYLES
+*/
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  background: var(--app-bg);
+  color: var(--app-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* SKIP TO CONTENT LINK (WCAG 2.4.1 Bypass Blocks) */
+.skip-link {
+  position: fixed;
+  top: -150px;
+  left: 20px;
+  z-index: 100000;
+  background: var(--accent-color);
+  color: var(--accent-text);
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 20px;
+  outline: 4px solid #ffffff !important;
+  outline-offset: 2px !important;
+}
+
+/* SCREEN READER ONLY UTILITY (Visually Hidden, Screen-reader Accessible) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* TOUCH TARGETS (WCAG 2.5.5 / 2.5.8 Minimum Target Size) */
+button,
+a,
+input,
+select,
+textarea {
+  min-height: 42px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* GENERAL FORM STYLES */
+input,
+select,
+textarea {
+  background: var(--card-bg);
+  color: var(--app-text);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* RESPONSIVE TABLE WRAPPER */
+.responsive-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  border-radius: var(--radius-md);
+}
+
+/* COMMON CARD UTILITY */
+.card,
+.claim-card,
+.notification-card,
+.match-card,
+.user-summary-card,
+.settings-card,
+.profile-card,
+.browse-item-card,
+.report-card {
+  background: var(--card-bg);
+  color: var(--app-text);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+/* GLOBAL RESPONSIVE ADJUSTMENTS */
+@media (max-width: 900px) {
+  .main-content,
+  .app-main-content {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content,
+  .app-main-content {
+    padding: 16px 12px;
+  }
+
+  button,
+  .btn {
+    min-height: 44px; /* Ensure 44px minimum touch target on phones */
+  }
+}

@@ -1,16 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-interface AuthRequest extends Request {
-    user?: {
-        user_id: number;
-        role: string;
-    };
-}
-
 // Verify JWT
 export const authenticateToken = (
-    req: AuthRequest,
+    req: Request,
     res: Response,
     next: NextFunction
 ) => {
@@ -39,10 +32,13 @@ export const authenticateToken = (
     try {
         const decoded = jwt.verify(token, secret) as {
             user_id: number;
-            role: string;
+            role: "admin" | "staff" | "student";
         };
 
-        req.user = decoded;
+        req.user = {
+            user_id: decoded.user_id,
+            role: decoded.role
+        };
 
         next();
 
@@ -57,7 +53,7 @@ export const authenticateToken = (
 // Check user role
 export const authorizeRoles = (...roles: string[]) => {
     return (
-        req: AuthRequest,
+        req: Request,
         res: Response,
         next: NextFunction
     ) => {

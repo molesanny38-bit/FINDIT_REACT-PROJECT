@@ -1,0 +1,446 @@
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--app-bg);
+  color: var(--app-text);
+  position: relative;
+}
+
+
+  
+ 
+.app-sidebar {
+  width: 270px;
+  min-width: 270px;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid var(--border-color);
+  z-index: 1000;
+  overflow-y: auto;
+  transition: transform var(--transition);
+}
+
+.sidebar-brand-header {
+  padding: 24px 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--accent-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.brand-title {
+  display: block;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+}
+
+.brand-badge-role {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 650;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mobile-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* SIDEBAR USER CARD */
+.sidebar-user-card {
+  margin: 10px 16px 18px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  font-size: 13.5px;
+  font-weight: 650;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-email {
+  font-size: 11.5px;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* SIDEBAR NAVIGATION */
+.sidebar-nav {
+  padding: 0 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav-section-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  padding: 14px 10px 6px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: var(--radius-md);
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 550;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active-bg);
+  color: #ffffff;
+  font-weight: 650;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.nav-link svg {
+  flex-shrink: 0;
+}
+
+.nav-badge {
+  margin-left: auto;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+}
+
+/* SIDEBAR FOOTER */
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 16px;
+  background: rgba(220, 38, 38, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.sidebar-logout-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   MAIN WRAPPER & TOPBAR
+   -------------------------------------------------------------------------- */
+.app-main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.app-topbar {
+  height: 68px;
+  background: var(--topbar-bg);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  backdrop-filter: blur(8px);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--app-text);
+  padding: 8px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-title {
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--app-text);
+}
+
+.topbar-role-tag {
+  font-size: 11px;
+  font-weight: 650;
+  background: var(--accent-light);
+  color: var(--accent-color);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--app-text);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition);
+}
+
+.topbar-icon-btn:hover {
+  background: var(--accent-light);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.topbar-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--topbar-bg);
+}
+
+.topbar-user-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 12px 4px 4px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  color: var(--app-text);
+  transition: all var(--transition);
+}
+
+.topbar-user-pill:hover {
+  border-color: var(--accent-color);
+  background: var(--accent-light);
+}
+
+.topbar-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.topbar-user-name {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+/* MAIN OUTLET CONTENT BODY */
+.app-content-body {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   -------------------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .mobile-close-btn {
+    display: flex;
+  }
+
+  /* OFF-CANVAS DRAWER SIDEBAR */
+  .app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 290px;
+    max-width: 85vw;
+    z-index: 11000;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.45);
+  }
+
+  /* MOBILE BACKDROP OVERLAY */
+  .mobile-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10500;
+    animation: backdropFadeIn 0.2s ease-out;
+  }
+
+  @keyframes backdropFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .app-topbar {
+    padding: 0 16px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 580px) {
+  .topbar-branding {
+    display: none; /* Hide brand text on phone screens to prevent overflowing toolbar */
+  }
+
+  .topbar-user-name {
+    display: none; /* Icon-only avatar pill on small screens */
+  }
+
+  .topbar-user-pill {
+    padding: 3px;
+  }
+
+  .app-topbar {
+    padding: 0 12px;
+  }
+}

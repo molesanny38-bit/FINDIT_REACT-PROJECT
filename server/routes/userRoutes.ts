@@ -1,39 +1,74 @@
+
 import { Router } from "express";
 
 import {
-  getUsers,
-  updateUserRole,
-  updateUserStatus,
-} from "../controllers/userController";
-
-
+    getUsers,
+    updateUserRole,
+    updateUserStatus,
+    getMyProfile,
+    updateMyProfile,
+    changeMyPassword,
+  } from "../controllers/userController";
 import {
-  authenticateToken,
-  authorizeRoles,
+    authenticateToken,
+    authorizeRoles,
 } from "../middleware/authMiddleware";
 
 const router = Router();
 
-// Only administrators can manage users
+
+// PROFILE MANAGEMENT
+// Available to all authenticated users
+
+
+// Get logged-in user's profile
 router.get(
-  "/",
-  authenticateToken,
-  authorizeRoles("admin"),
-  getUsers
+    "/me",
+    authenticateToken,
+    getMyProfile
 );
 
-router.patch(
-  "/:id/role",
-  authenticateToken,
-  authorizeRoles("admin"),
-  updateUserRole
+// Update logged-in user's profile
+router.put(
+    "/me",
+    authenticateToken,
+    updateMyProfile
 );
 
+// Change logged-in user's password
 router.patch(
-  "/:id/status",
-  authenticateToken,
-  authorizeRoles("admin"),
-  updateUserStatus
+    "/me/password",
+    authenticateToken,
+    changeMyPassword
+);
+
+
+// USER MANAGEMENT
+// Admin only
+
+
+// Get all users
+router.get(
+    "/",
+    authenticateToken,
+    authorizeRoles("admin"),
+    getUsers
+);
+
+// Update user role
+router.patch(
+    "/:id/role",
+    authenticateToken,
+    authorizeRoles("admin"),
+    updateUserRole
+);
+
+// Update user account status
+router.patch(
+    "/:id/status",
+    authenticateToken,
+    authorizeRoles("admin"),
+    updateUserStatus
 );
 
 export default router;

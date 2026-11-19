@@ -2,12 +2,15 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
+// Upload directory
 const uploadPath = path.join(process.cwd(), "uploads");
 
+// Create uploads folder if it does not exist
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
 
+// Configure image storage
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => {
     cb(null, uploadPath);
@@ -24,6 +27,7 @@ const storage = multer.diskStorage({
   },
 });
 
+// Allow only JPG, PNG, and WEBP
 const fileFilter: multer.Options["fileFilter"] = (
   _req,
   file,
@@ -42,11 +46,12 @@ const fileFilter: multer.Options["fileFilter"] = (
   }
 };
 
+// Configure Multer
 const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 5 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024, // 5MB maximum
   },
 });
 

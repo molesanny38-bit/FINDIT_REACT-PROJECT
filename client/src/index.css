@@ -787,9 +787,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* ================================
-   POSSIBLE MATCHES PAGE
-================================ */
 
 .matches-page {
   padding: 25px;
@@ -1387,5 +1384,235 @@ body {
 
   .return-modal {
     padding: 20px;
+  }
+}
+
+
+/* Main Claims Page */
+.claims-page {
+  background: transparent;
+  color: var(--app-text, #1e293b);
+}
+
+/* Page Header */
+.claims-header h1 {
+  color: var(--app-text, #1e293b);
+}
+
+.claims-header p {
+  color: var(--app-muted, #64748b);
+}
+
+
+.claims-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  margin: 24px 0 30px;
+}
+
+.claim-card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  color: #1e293b;
+  padding: 24px;
+  min-height: 125px;
+  border: 1px solid #e2e8f0;
+  border-left: 5px solid #3b82f6;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.claim-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.1);
+}
+
+.claim-card h3 {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.claim-card h2 {
+  color: #1e293b;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Card Accent Colors */
+.claim-card:nth-child(1) {
+  border-left-color: #3b82f6;
+}
+
+.claim-card:nth-child(2) {
+  border-left-color: #f59e0b;
+}
+
+.claim-card:nth-child(3) {
+  border-left-color: #10b981;
+}
+
+.claim-card:nth-child(4) {
+  border-left-color: #ef4444;
+}
+
+
+
+:root[data-theme="dark"] .claim-card {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+  border-left: 5px solid #60a5fa !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] .claim-card h3 {
+  color: #cbd5e1 !important;
+}
+
+:root[data-theme="dark"] .claim-card h2 {
+  color: #ffffff !important;
+}
+
+/* Individual Dark Mode Accent Colors */
+:root[data-theme="dark"] .claim-card:nth-child(1) {
+  border-left-color: #60a5fa !important;
+}
+
+:root[data-theme="dark"] .claim-card:nth-child(2) {
+  border-left-color: #fbbf24 !important;
+}
+
+:root[data-theme="dark"] .claim-card:nth-child(3) {
+  border-left-color: #34d399 !important;
+}
+
+:root[data-theme="dark"] .claim-card:nth-child(4) {
+  border-left-color: #f87171 !important;
+}
+
+:root[data-theme="dark"] .claim-card:hover {
+  background: #263449 !important;
+}
+
+
+.claims-table-container {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.claims-table-container h2 {
+  color: #1e293b;
+}
+
+/* Dark Mode Table Containers */
+:root[data-theme="dark"] .claims-table-container {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+:root[data-theme="dark"] .claims-table-container h2 {
+  color: #f8fafc !important;
+}
+
+
+.claims-table {
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.claims-table th {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.claims-table td {
+  color: #475569;
+  border-bottom-color: #e2e8f0;
+}
+
+/* Dark Mode Table */
+:root[data-theme="dark"] .claims-table {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+:root[data-theme="dark"] .claims-table th {
+  background: #273449 !important;
+  color: #f8fafc !important;
+  border-bottom-color: #475569 !important;
+}
+
+:root[data-theme="dark"] .claims-table td {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-bottom-color: #334155 !important;
+}
+
+:root[data-theme="dark"] .claims-table tbody tr:hover td {
+  background: #29384d !important;
+}
+
+
+:root[data-theme="dark"] .claims-search,
+:root[data-theme="dark"] .claims-filter {
+  background: #111c30 !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #475569 !important;
+}
+
+:root[data-theme="dark"] .claims-search::placeholder {
+  color: #94a3b8 !important;
+}
+
+
+
+:root[data-theme="dark"] .claims-pagination {
+  color: #cbd5e1;
+}
+
+
+:root[data-theme="dark"] .return-modal {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+:root[data-theme="dark"] .return-modal h2,
+:root[data-theme="dark"] .return-modal p,
+:root[data-theme="dark"] .return-modal label {
+  color: #f1f5f9 !important;
+}
+
+:root[data-theme="dark"] .return-modal input,
+:root[data-theme="dark"] .return-modal textarea {
+  background: #111c30 !important;
+  color: #f1f5f9 !important;
+  border-color: #475569 !important;
+}
+
+
+ 
+@media (max-width: 900px) {
+  .claims-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .claims-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .claim-card {
+    min-height: 110px;
   }
 }

@@ -1,12 +1,13 @@
 import { Router } from "express";
 
 import {
-  getItems,
-  addItem,
-  getCategories,
-  getLocations,
-  updateItem,
-  deleteItem,
+    getItems,
+    addItem,
+    getCategories,
+    getLocations,
+    updateItem,
+    updateItemStatus,
+    deleteItem
 } from "../controllers/itemController";
 
 import { authenticateToken } from "../middleware/authMiddleware";
@@ -19,21 +20,30 @@ router.get("/locations", authenticateToken, getLocations);
 
 router.get("/", authenticateToken, getItems);
 
-// Image upload is optional when reporting an item.
 router.post(
-  "/",
-  authenticateToken,
-  upload.single("image"),
-  addItem
+    "/",
+    authenticateToken,
+    upload.single("image"),
+    addItem
+);
+
+router.patch(
+    "/:id/status",
+    authenticateToken,
+    updateItemStatus
 );
 
 router.put(
-  "/:id",
-  authenticateToken,
-  upload.single("image"),
-  updateItem
+    "/:id",
+    authenticateToken,
+    upload.single("image"),
+    updateItem
 );
 
-router.delete("/:id", authenticateToken, deleteItem);
+router.delete(
+    "/:id",
+    authenticateToken,
+    deleteItem
+);
 
 export default router;

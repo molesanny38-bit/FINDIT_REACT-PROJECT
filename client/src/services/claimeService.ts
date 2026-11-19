@@ -12,9 +12,9 @@ const getAuthConfig = () => {
   };
 };
 
-// ==========================================
+
 // CLAIM INTERFACE
-// ==========================================
+
 export interface Claim {
   claim_id: number;
   item_id: number;
@@ -30,9 +30,9 @@ export interface Claim {
   last_name: string;
 }
 
-// ==========================================
+
 // RETURN INTERFACE
-// ==========================================
+
 export interface ItemReturn {
   return_id: number;
   claim_id: number;
@@ -50,9 +50,9 @@ export interface ItemReturn {
   staff_last_name: string;
 }
 
-// ==========================================
+
 // GET CLAIMS
-// ==========================================
+
 export const getClaims = async (): Promise<Claim[]> => {
   const response = await axios.get(
     `${API_URL}/claims`,
@@ -62,9 +62,9 @@ export const getClaims = async (): Promise<Claim[]> => {
   return response.data;
 };
 
-// ==========================================
+
 // SUBMIT A CLAIM
-// ==========================================
+
 export const submitClaim = async (
   item_id: number,
   claim_description: string
@@ -81,9 +81,9 @@ export const submitClaim = async (
   return response.data;
 };
 
-// ==========================================
+
 // APPROVE OR REJECT A CLAIM
-// ==========================================
+
 export const reviewClaim = async (
   id: number,
   claim_status: "approved" | "rejected"
@@ -97,9 +97,9 @@ export const reviewClaim = async (
   return response.data;
 };
 
-// ==========================================
+
 // MARK CLAIM AS RETURNED
-// ==========================================
+
 export const markClaimAsReturned = async (
   id: number,
   receiver_name: string,
@@ -117,9 +117,9 @@ export const markClaimAsReturned = async (
   return response.data;
 };
 
-// ==========================================
+
 // GET RETURN HISTORY
-// ==========================================
+
 export const getReturnHistory = async (): Promise<ItemReturn[]> => {
   const response = await axios.get(
     `${API_URL}/claims/returns`,

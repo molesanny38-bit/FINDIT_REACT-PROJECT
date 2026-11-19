@@ -10,6 +10,7 @@ import {
   Percent,
   ArrowRight,
 } from "lucide-react";
+import "./Matches.css";
 
 import {
   getMatches,
@@ -129,25 +130,7 @@ function Matches() {
     (match) => match.match_status === "dismissed"
   ).length;
 
-  const getStatusStyle = (status: string) => {
-    switch (status) {
-      case "confirmed":
-        return {
-          background: "#dcfce7",
-          color: "#166534",
-        };
-      case "dismissed":
-        return {
-          background: "#fee2e2",
-          color: "#991b1b",
-        };
-      default:
-        return {
-          background: "#fef3c7",
-          color: "#92400e",
-        };
-    }
-  };
+  
 
   const renderItemImage = (
     imagePath: string | null | undefined,
@@ -225,18 +208,20 @@ function Matches() {
       {/* Search and filters */}
       <div className="matches-toolbar">
         <div className="matches-search">
-          <Search size={18} />
+          <Search size={18} aria-hidden="true" />
           <input
             type="text"
             placeholder="Search item name or location..."
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}
+            aria-label="Search matches by item name or location"
           />
         </div>
 
         <select
           value={activeFilter}
           onChange={(event) => setActiveFilter(event.target.value)}
+          aria-label="Filter matches by status"
         >
           <option value="all">All Matches</option>
           <option value="suggested">Suggested</option>
@@ -245,8 +230,8 @@ function Matches() {
         </select>
       </div>
 
-      {error && <div className="matches-alert error">{error}</div>}
-      {success && <div className="matches-alert success">{success}</div>}
+      {error && <div className="matches-alert error" role="alert" aria-live="polite">{error}</div>}
+      {success && <div className="matches-alert success" role="status" aria-live="polite">{success}</div>}
 
       {/* Match cards */}
       {filteredMatches.length === 0 ? (
@@ -267,12 +252,9 @@ function Matches() {
                   <span className="match-id">
                     Match #{match.match_id}
                   </span>
-                  <span
-                    className="match-status"
-                    style={getStatusStyle(match.match_status)}
-                  >
-                    {match.match_status}
-                  </span>
+                  <span className={`match-status ${match.match_status}`}>
+                      {match.match_status}
+                      </span>
                 </div>
 
                 <div className="match-percentage">

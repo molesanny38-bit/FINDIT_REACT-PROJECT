@@ -1,0 +1,277 @@
+.reports-page {
+    padding: 25px;
+    color: #1f2937;
+}
+
+.reports-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.reports-header h1 {
+    font-size: 27px;
+    margin-bottom: 6px;
+}
+
+.reports-header p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.export-button,
+.filter-button,
+.reset-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.export-button {
+    background: #2563eb;
+    color: white;
+}
+
+.filter-button {
+    background: #2563eb;
+    color: white;
+}
+
+.reset-button {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.reports-filter {
+    display: flex;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 22px;
+}
+
+.date-input {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.date-input label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.date-input input {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.reports-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-bottom: 22px;
+}
+
+.report-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.report-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 10px;
+}
+
+.report-card p {
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.report-card h2 {
+    font-size: 25px;
+}
+
+.reports-chart-container {
+    background: white;
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 22px;
+    min-width: 0;
+}
+
+.chart-header {
+    margin-bottom: 20px;
+}
+
+.chart-header h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.chart-header p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.chart-area {
+    width: 100%;
+    height: 320px;
+}
+
+.reports-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.claim-report-section {
+    background: white;
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.claim-report-section h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.claim-report-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.claim-report-grid div {
+    background: #f9fafb;
+    padding: 17px;
+    border-radius: 8px;
+}
+
+.claim-report-grid span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.claim-report-grid h2 {
+    font-size: 24px;
+    margin: 8px 0 0;
+}
+
+.reports-loading,
+.reports-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    gap: 15px;
+    color: #6b7280;
+}
+
+.reports-error button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.reports-warning {
+    padding: 12px;
+    background: #fef2f2;
+    color: #b91c1c;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+
+.empty-chart {
+    text-align: center;
+    padding-top: 100px;
+    color: #6b7280;
+}
+
+.reports-spinner {
+    animation: reports-spin 1s linear infinite;
+}
+
+@keyframes reports-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 1000px) {
+    .reports-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .claim-report-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .reports-page {
+        padding: 15px;
+    }
+
+    .reports-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .reports-chart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reports-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .claim-report-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reports-filter {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .date-input input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
