@@ -1,167 +1,188 @@
+/* ==========================================================================
+   FINDIT CAMPUS - CLAIMS MANAGEMENT (PREMIUM SAAS REDESIGN)
+   ========================================================================== */
 
 .claims-page {
   width: 100%;
-  padding: 25px;
-  color: var(--app-text, #1e293b);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--app-text);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* PAGE HEADER */
-
+/* --------------------------------------------------------------------------
+   PAGE HEADER
+   -------------------------------------------------------------------------- */
 .claims-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .claims-header h1 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 7px;
-  color: var(--app-text, #1e293b);
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  color: var(--app-text);
+  margin-bottom: 4px;
 }
 
 .claims-header p {
-  color: var(--app-muted, #64748b);
-  font-size: 14px;
+  color: var(--app-muted);
+  font-size: 13.5px;
 }
 
 .refresh-button {
-  padding: 11px 18px;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent-color, #2563eb);
-  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--app-text);
+  border: 1px solid var(--border-color);
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
-.refresh-button:hover {
-  background: var(--accent-hover, #1d4ed8);
+.refresh-button:hover:not(:disabled) {
+  background: var(--card-hover-bg);
+  border-color: var(--border-strong);
 }
 
 .refresh-button:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-/* SUCCESS AND ERROR MESSAGES */
-
+/* --------------------------------------------------------------------------
+   MESSAGES & NOTICES
+   -------------------------------------------------------------------------- */
 .success-message,
 .error-message {
-  padding: 12px 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .success-message {
-  color: #166534;
-  background: #dcfce7;
-  border: 1px solid #bbf7d0;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .error-message {
-  color: #991b1b;
-  background: #fee2e2;
-  border: 1px solid #fecaca;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 
-/* SUMMARY CARDS */
-
+/* --------------------------------------------------------------------------
+   SUMMARY KPI TILES
+   -------------------------------------------------------------------------- */
 .claims-summary {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
 }
 
 .claim-card {
-  background: var(--card-bg, #ffffff);
-  color: var(--app-text, #1e293b);
-  padding: 23px;
-  min-height: 125px;
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-left: 5px solid #3b82f6;
-  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
   box-shadow: var(--card-shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .claim-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
 }
 
+.claim-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.claim-card:nth-child(1)::before { background: var(--accent-color); }
+.claim-card:nth-child(2)::before { background: var(--warning-color); }
+.claim-card:nth-child(3)::before { background: var(--success-color); }
+.claim-card:nth-child(4)::before { background: var(--danger-color); }
+
 .claim-card h3 {
-  color: var(--app-muted, #64748b);
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 14px;
+  color: var(--app-muted);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
 }
 
 .claim-card h2 {
-  color: var(--app-text, #1e293b);
-  font-size: 30px;
-  font-weight: 700;
+  color: var(--app-text);
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.claim-card:nth-child(1) {
-  border-left-color: #3b82f6;
-}
-
-.claim-card:nth-child(2) {
-  border-left-color: #f59e0b;
-}
-
-.claim-card:nth-child(3) {
-  border-left-color: #10b981;
-}
-
-.claim-card:nth-child(4) {
-  border-left-color: #ef4444;
-}
-
-/* TABLE CONTAINERS */
-
+/* --------------------------------------------------------------------------
+   DATA TABLE CONTAINER & CONTROLS
+   -------------------------------------------------------------------------- */
 .claims-table-container {
-  background: var(--card-bg, #ffffff);
-  color: var(--app-text, #1e293b);
-  border: 1px solid var(--border-color, #e2e8f0);
-  border-radius: 12px;
-  padding: 22px;
-  margin-bottom: 25px;
-  overflow-x: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
   box-shadow: var(--card-shadow);
+  overflow-x: auto;
 }
 
 .claims-table-container h2 {
-  font-size: 19px;
+  font-size: 15px;
   font-weight: 700;
-  margin-bottom: 18px;
-  color: var(--app-text, #1e293b);
+  color: var(--app-text);
+  margin-bottom: 14px;
 }
-
-/* SEARCH AND FILTER */
 
 .claims-controls {
   display: flex;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 10px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
 .claims-search,
 .claims-filter {
-  padding: 12px 14px;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 8px;
-  background: var(--card-bg, #ffffff);
-  color: var(--app-text, #1e293b);
-  font-size: 14px;
-  outline: none;
-  transition: border-color 0.2s ease;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--app-text);
+  font-size: 13px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .claims-search {
@@ -170,300 +191,269 @@
 }
 
 .claims-filter {
-  min-width: 170px;
+  min-width: 160px;
   cursor: pointer;
 }
 
-.claims-search:focus,
-.claims-filter:focus {
-  border-color: var(--accent-color, #2563eb);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* CLAIMS TABLE */
-
+/* --------------------------------------------------------------------------
+   SAAS DATA TABLE
+   -------------------------------------------------------------------------- */
 .claims-table {
   width: 100%;
-  min-width: 950px;
+  min-width: 850px;
   border-collapse: collapse;
-  margin-top: 15px;
-}
-
-.claims-table th,
-.claims-table td {
-  padding: 15px;
-  border-bottom: 1px solid var(--border-color, #e2e8f0);
-  text-align: left;
-  font-size: 13px;
 }
 
 .claims-table th {
-  background: var(--accent-light, #eff6ff);
-  color: var(--app-text, #334155);
+  padding: 10px 12px;
+  background: var(--app-bg);
+  color: var(--app-muted);
+  font-size: 11px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
   white-space: nowrap;
 }
 
 .claims-table td {
-  color: var(--app-text, #475569);
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--app-text);
+  font-size: 13px;
   vertical-align: middle;
 }
 
 .claims-table tbody tr {
-  transition: background 0.2s ease;
+  transition: background var(--transition-fast);
 }
 
 .claims-table tbody tr:hover {
-  background: var(--accent-light, #f8fafc);
+  background: var(--card-hover-bg);
 }
 
-/* CLAIM STATUS BADGES */
-
+/* Status Badges */
 .claim-status {
-  display: inline-block;
-  padding: 6px 11px;
-  border-radius: 20px;
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2.5px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10.5px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
 .claim-status.pending {
-  background: #fef3c7;
-  color: #92400e;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1px solid var(--warning-border);
 }
 
 .claim-status.approved {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .claim-status.rejected {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 
 .claim-status.cancelled {
-  background: #e5e7eb;
-  color: #374151;
+  background: var(--app-bg);
+  color: var(--app-muted);
+  border: 1px solid var(--border-color);
 }
 
-/* CLAIM ACTION BUTTONS */
-
+/* Actions */
 .claim-actions {
   display: flex;
-  gap: 7px;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .approve-button,
-.reject-button {
-  padding: 9px 12px;
-  border: none;
-  border-radius: 6px;
-  color: white;
+.reject-button,
+.return-button {
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all var(--transition-fast);
   white-space: nowrap;
+  border: none;
 }
 
 .approve-button {
-  background: #16a34a;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
-.approve-button:hover {
-  background: #15803d;
+.approve-button:hover:not(:disabled) {
+  background: var(--success-color);
+  color: #ffffff;
 }
 
 .reject-button {
-  background: #dc2626;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 
-.reject-button:hover {
-  background: #b91c1c;
+.reject-button:hover:not(:disabled) {
+  background: var(--danger-color);
+  color: #ffffff;
 }
 
-.approve-button:disabled,
-.reject-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.return-button {
+  background: var(--accent-light);
+  color: var(--accent-color);
+  border: 1px solid var(--accent-light-border);
 }
 
-/* PAGINATION */
+.return-button:hover:not(:disabled) {
+  background: var(--accent-color);
+  color: #ffffff;
+}
 
+/* --------------------------------------------------------------------------
+   PAGINATION
+   -------------------------------------------------------------------------- */
 .claims-pagination {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 22px;
-  color: var(--app-muted, #64748b);
-  font-size: 13px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  font-size: 12.5px;
+  color: var(--app-muted);
 }
 
 .pagination-buttons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
 }
 
-.pagination-buttons button {
-  padding: 9px 15px;
-  border: none;
-  border-radius: 6px;
-  background: var(--accent-color, #2563eb);
-  color: white;
+.pagination-btn {
+  padding: 5px 11px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--app-text);
+  font-size: 12.5px;
+  font-weight: 550;
   cursor: pointer;
-  font-weight: 600;
+  transition: all var(--transition-fast);
 }
 
-.pagination-buttons button:hover:not(:disabled) {
-  background: var(--accent-hover, #1d4ed8);
+.pagination-btn:hover:not(:disabled) {
+  background: var(--card-hover-bg);
+  border-color: var(--border-strong);
 }
 
-.pagination-buttons button:disabled {
-  background: #94a3b8;
+.pagination-btn:disabled {
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
-/* RETURN MODAL */
-
+/* --------------------------------------------------------------------------
+   RETURN MODAL DIALOG
+   -------------------------------------------------------------------------- */
 .return-modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
-  padding: 20px;
+  justify-content: center;
+  padding: 18px;
 }
 
 .return-modal {
   width: 100%;
-  max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 28px;
-  border-radius: 14px;
-  background: var(--card-bg, #ffffff);
-  color: var(--app-text, #1e293b);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  max-width: 480px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--modal-shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .return-modal h2 {
-  margin-bottom: 15px;
-  font-size: 22px;
-  color: var(--app-text, #1e293b);
+  font-size: 17px;
+  font-weight: 750;
+  color: var(--app-text);
 }
 
 .return-modal p {
-  margin-bottom: 20px;
-  color: var(--app-muted, #64748b);
+  font-size: 13.5px;
+  color: var(--app-muted);
 }
 
 .return-modal .form-group {
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .return-modal label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: var(--app-text, #1e293b);
+  color: var(--app-text);
 }
 
 .return-modal input,
 .return-modal textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 7px;
-  background: var(--card-bg, #ffffff);
-  color: var(--app-text, #1e293b);
-  font-family: inherit;
-  font-size: 14px;
-  outline: none;
-}
-
-.return-modal input:focus,
-.return-modal textarea:focus {
-  border-color: var(--accent-color, #2563eb);
-}
-
-.return-modal textarea {
-  resize: vertical;
 }
 
 .return-modal-actions {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-.return-modal-actions button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* DARK MODE */
-
-:root[data-theme="dark"] .claim-status.pending {
-  background: #713f12;
-  color: #fde68a;
-}
-
-:root[data-theme="dark"] .claim-status.approved {
-  background: #14532d;
-  color: #bbf7d0;
-}
-
-:root[data-theme="dark"] .claim-status.rejected {
-  background: #7f1d1d;
-  color: #fecaca;
-}
-
-:root[data-theme="dark"] .claim-status.cancelled {
-  background: #374151;
-  color: #e5e7eb;
-}
-
-:root[data-theme="dark"] .success-message {
-  background: #14532d;
-  color: #bbf7d0;
-  border-color: #166534;
-}
-
-:root[data-theme="dark"] .error-message {
-  background: #7f1d1d;
-  color: #fecaca;
-  border-color: #991b1b;
-}
-
-/* RESPONSIVE DESIGN */
-
+/* --------------------------------------------------------------------------
+   RESPONSIVE DESIGN
+   -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
   .claims-summary {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
   .claims-page {
-    padding: 15px;
+    padding: 16px 12px;
   }
 
   .claims-header {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: stretch;
   }
 
   .claims-summary {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 
   .claims-controls {
@@ -475,29 +465,13 @@
     width: 100%;
   }
 
-  .claims-table-container {
-    padding: 15px;
-  }
-
   .claims-pagination {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .pagination-buttons {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .return-modal {
-    padding: 20px;
-  }
-
-  .return-modal-actions {
-    flex-direction: column-reverse;
-  }
-
-  .return-modal-actions button {
-    width: 100%;
   }
 }
